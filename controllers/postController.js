@@ -1,12 +1,29 @@
 const postsList = require('../data/posts');
 
-
 function index(req, res) {
-    res.send('Elenco dei post');
+
+    const ojbectPosts = {
+        postsNumber: postsList.length,
+        posts: postsList
+    }
+
+    res.json(ojbectPosts);
 }
 
 function show(req, res) {
-    res.send('Visualizzazione del post ' + req.params.id);
+    const postId = postsList.find(post =>
+        post.id === parseInt(req.params.id));
+
+    if (!postId) {
+        res.status(404);
+        return res.json({
+            error: "404 Not Found",
+            message: "post non trovato"
+        })
+    }
+
+    res.json(postId);
+
 }
 
 function store(req, res) {
