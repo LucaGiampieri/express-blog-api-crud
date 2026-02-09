@@ -39,7 +39,25 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    res.send('Eliminazione del post ' + req.params.id);
+
+    const postId = postsList.find(post =>
+        post.id === parseInt(req.params.id));
+
+    if (!postId) {
+        res.status(404);
+        return res.json({
+            error: "404 Not Found",
+            message: "post non trovato"
+        })
+    }
+
+    postsList.splice(postsList.indexOf(postId), 1);
+
+    res.sendStatus(204);
+
+    console.log(postsList);
+
+
 }
 
 // esportiamo tutto
