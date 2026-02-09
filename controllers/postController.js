@@ -2,9 +2,18 @@ const postsList = require('../data/posts');
 
 function index(req, res) {
 
+    let filteredPost = postsList;
+
+    if (req.query.tags || req.query.title) {
+        filteredPost = postsList.filter(post =>
+            post.tags.includes(req.query.tags)
+            || post.title.includes(req.query.title)
+        );
+    }
+
     const ojbectPosts = {
-        postsNumber: postsList.length,
-        posts: postsList
+        postsNumber: filteredPost.length,
+        posts: filteredPost
     }
 
     res.json(ojbectPosts);
@@ -56,7 +65,6 @@ function destroy(req, res) {
     res.sendStatus(204);
 
     console.log(postsList);
-
 
 }
 
