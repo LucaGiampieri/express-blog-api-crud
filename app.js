@@ -12,6 +12,8 @@ app.get('/', (req, res) => {
 
 })
 
+app.use(express.json());
+
 app.use("/posts", postsRouter);
 
 app.listen(port, () => {
