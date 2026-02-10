@@ -81,7 +81,26 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    res.send('Modifica parziale del post ' + req.params.id);
+
+    const postId = postsList.find(post =>
+        post.id === parseInt(req.params.id));
+
+    if (!postId) {
+        res.status(404);
+        return res.json({
+            error: "404 Not Found",
+            message: "post non trovato"
+        })
+    };
+
+    req.body.title ? postId.title = req.body.title : postId.title;
+    req.body.content ? postId.content = req.body.content : postId.content;
+    req.body.image ? postId.image = req.body.image : postId.image;
+    req.body.tags ? postId.tags = req.body.tags : postId.tags;
+
+    console.log(postsList);
+
+    res.json(postId);
 }
 
 function destroy(req, res) {
