@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const postsList = require('../data/posts');
-
 const postController = require('../controllers/postController');
 
 //rotte du CRUD
