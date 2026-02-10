@@ -49,12 +49,35 @@ function store(req, res) {
 
     postsList.push(newPost);
 
+    console.log(newPost);
+
+
     res.status(201);
     res.json(newPost)
 }
 
 function update(req, res) {
-    res.send('Modifica integrale del post ' + req.params.id);
+
+    const postId = postsList.find(post =>
+        post.id === parseInt(req.params.id));
+
+    if (!postId) {
+        res.status(404);
+        return res.json({
+            error: "404 Not Found",
+            message: "post non trovato"
+        })
+    };
+
+    postId.title = req.body.title;
+    postId.content = req.body.content;
+    postId.image = req.body.image;
+    postId.tags = req.body.tags;
+
+    console.log(postsList);
+
+    res.json(postId);
+
 }
 
 function modify(req, res) {
@@ -72,7 +95,7 @@ function destroy(req, res) {
             error: "404 Not Found",
             message: "post non trovato"
         })
-    }
+    };
 
     postsList.splice(postsList.indexOf(postId), 1);
 
