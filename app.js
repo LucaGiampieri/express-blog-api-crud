@@ -4,7 +4,8 @@ const port = 3000;
 
 const postsRouter = require('./routes/posts');
 
-const errorHandler = require('./middlewares/errorHandler')
+const errorHandler = require('./middlewares/errorHandler');
+const errorNotFound = require('./middlewares/errorNotFound');
 
 app.use(express.static('public'));
 
@@ -18,7 +19,7 @@ app.use(express.json());
 
 app.use("/posts", postsRouter);
 
-app.use(errorHandler);
+app.use(errorHandler, errorNotFound);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
