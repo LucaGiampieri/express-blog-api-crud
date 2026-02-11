@@ -2,6 +2,8 @@ const postsList = require('../data/posts');
 
 function index(req, res) {
 
+    //throw new Error("Errore di test middleware");
+
     let filteredPost = postsList;
 
     if (req.query.tags || req.query.title) {
