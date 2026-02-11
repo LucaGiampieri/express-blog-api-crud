@@ -7,16 +7,16 @@ const postsRouter = require('./routes/posts');
 const errorHandler = require('./middlewares/errorHandler');
 const errorNotFound = require('./middlewares/errorNotFound');
 
-const helloRequest = require('./middlewares/helloRequest');
+const helloRequest = require('./middlewares/request/helloRequest');
 
-const homeRequest = require('./middlewares/homeRequest')
+const homeRequest = require('./middlewares/request/homeRequest')
 
 
 app.use(express.static('public'));
 
-app.use(helloRequest, homeRequest);
+app.use(helloRequest);
 
-app.get('/', (req, res) => {
+app.get('/', homeRequest, (req, res) => {
 
     res.send("Server del mio blog");
 
