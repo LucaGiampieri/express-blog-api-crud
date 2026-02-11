@@ -9,9 +9,12 @@ const errorNotFound = require('./middlewares/errorNotFound');
 
 const helloRequest = require('./middlewares/helloRequest');
 
+const homeRequest = require('./middlewares/homeRequest')
+
+
 app.use(express.static('public'));
 
-app.use(helloRequest);
+app.use(helloRequest, homeRequest);
 
 app.get('/', (req, res) => {
 
