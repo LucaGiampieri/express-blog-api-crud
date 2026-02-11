@@ -7,7 +7,11 @@ const postsRouter = require('./routes/posts');
 const errorHandler = require('./middlewares/errorHandler');
 const errorNotFound = require('./middlewares/errorNotFound');
 
+const helloRequest = require('./middlewares/helloRequest');
+
 app.use(express.static('public'));
+
+app.use(helloRequest);
 
 app.get('/', (req, res) => {
 
