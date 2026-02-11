@@ -3,7 +3,7 @@ function storeRequest(req, res, next) {
     res.on("finish", () => {
 
         if (res.statusCode >= 200 && res.statusCode < 300) {
-            console.log("Hai effettutato una richista store");
+            console.log("Hai effettutato una richista STORE");
         }
 
     });
